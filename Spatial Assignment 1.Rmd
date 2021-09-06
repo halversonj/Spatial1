@@ -22,7 +22,7 @@ openspace <- st_read("RECREATION_OpenSpace.shp")
 ```
 
 ## Map #1
-This map clearly shows areas of open space in Cambridge and the concentration of park lights within those open spaces. The opacity of the open space reveals water underneath, which indivates areas where park lights are not expected. Additionally, this map reveals the small set of open spaces that do not have park lights, which may be unpleasant or unsafe.
+This map clearly shows areas of open space in Cambridge and the concentration of park lights within those open spaces. The opacity of the open space reveals water underneath, which indicates areas where park lights are not expected. Additionally, this map reveals the small set of open spaces that do not have park lights, which may be unpleasant or unsafe.
 
 
 ```{r, echo=FALSE}
