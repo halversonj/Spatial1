@@ -1,35 +1,62 @@
 ---
 title: "Spatial Assignment 1"
 author: "Jack Halverson"
-date: "9/5/2021"
+date: "9/6/2021"
 output: html_document
 ---
 
-```{r load packages, message = FALSE}
-library(sf)
-library(tidyverse)
+```{r load packages, message=FALSE}
 library(ggspatial)
 library(ggthemes)
+library(tidyverse)
+library(sf)
 ```
 
 ```{r}
-neighborhoods <- st_read("BOUNDARY_CDDNeighborhoods.shp")
-streetlights <- st_read("INFRA_StreetLights.shp")
+parklights <- st_read("INFRA_ParkLights.gdb")
 openspace <- st_read("RECREATION_OpenSpace.shp")
 ```
 
 ```{r}
 ggplot() +
-  geom_sf(data = neighborhoods, color = "black",
-          size = 0.5,
-          fill = "orange",
-          alpha = 0.1)+
-  geom_sf(data = openspace, color = NA,
-          size = NA,
-          fill = "green",
-          alpha = 0.75) +
-  geom_sf(data = streetlights, color = "yellow",
-          shape = 17,
-          size = 0.5,
-          alpha = NA)
+  geom_sf(data = openspace,
+          color = NA,
+          alpha = 0.5,
+          aes(fill = "Open Space")) +
+    geom_sf(data = parklights,
+          size = 0.2,
+          shape = 19,
+          alpha = 1,
+          aes(color = "Park Light")) +
+  scale_fill_manual(values = "dark green", name = " ") +
+  scale_color_manual(values = "gold", name = "") +
+  theme(panel.background = element_rect(fill = "white"),
+        legend.key = element_rect(fill = "white"))+
+  theme_void()
+
 ```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
