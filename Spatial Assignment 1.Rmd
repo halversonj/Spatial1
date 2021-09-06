@@ -5,36 +5,48 @@ date: "9/6/2021"
 output: html_document
 ---
 
-```{r load packages, message=FALSE}
+## Assignment #1 | Group 4
+Alanna Wittet, Jack Halverson, Wladka Kijewska, Yuanzhao Wang
+
+This set of maps compares open space and park lights in Cambridge, MA. The 5 maps vary in efficacy, with one notably ineffective example and one very compelling example.
+
+```{r load packages, message=FALSE, echo=FALSE}
 library(ggspatial)
 library(ggthemes)
 library(tidyverse)
 library(sf)
 ```
 
-```{r}
+```{r, echo=FALSE}
 parklights <- st_read("INFRA_ParkLights.gdb")
 openspace <- st_read("RECREATION_OpenSpace.shp")
 ```
 
-```{r}
+## Map #1
+This clean map clearly shows areas of open space in Cambridge and the concentration of park lights within those open spaces. The opacity of the open space reveals water underneath, so those are areas where park lights should not be expected. However, it does reveal the small set of open spaces that do not have park lights, leading to unpleasant or unsafe experiences.
+
+```{r, echo=FALSE}
 ggplot() +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
   geom_sf(data = openspace,
           color = NA,
-          alpha = 0.5,
+          alpha = 0.25,
           aes(fill = "Open Space")) +
     geom_sf(data = parklights,
-          size = 0.2,
+          size = 0.75,      
           shape = 19,
           alpha = 1,
           aes(color = "Park Light")) +
   scale_fill_manual(values = "dark green", name = " ") +
   scale_color_manual(values = "gold", name = "") +
+  labs(caption = "Map tiles and data by OpenStreetMap") +
   theme(panel.background = element_rect(fill = "white"),
         legend.key = element_rect(fill = "white"))+
-  theme_void()
+  theme_map() 
 
 ```
+
+## This is another test
 
 
 ```{r setup, include=FALSE}
