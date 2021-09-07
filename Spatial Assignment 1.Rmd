@@ -47,7 +47,7 @@ ggplot() +
 ```
 
 ## Map #2
-The "cartodark" basemap may be good in theory to demonstrate the need for park lights at night. This basemap helps show the yellow dots more clearly, but since the viewer cannot see the water features, it seems as though there are more park lights missing than in actuality.
+The "cartodark" basemap may be good in theory to demonstrate the need for park lights at night. The dark basemap shows the data more obviously, but the color scheme is distracting and the points for park lights are too large to distinguish a specific location.
 
 
 ```{R, echo=FALSE}
@@ -58,12 +58,12 @@ ggplot() +
           alpha = 1,
           aes(fill = "Open Space")) +
     geom_sf(data = parklights,
-          size = 0.75,      
+          size = 3,      
           shape = 19,
           alpha = 1,
           aes(color = "Park Light")) +
-  scale_fill_manual(values = "dark green", name = " ") +
-  scale_color_manual(values = "gold", name = "") +
+  scale_fill_manual(values = "blue", name = " ") +
+  scale_color_manual(values = "red", name = "") +
   labs(caption = "Map tiles and data by OpenStreetMap") +
   theme(panel.background = element_rect(fill = "white"),
         legend.key = element_rect(fill = "white"))+
