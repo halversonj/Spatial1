@@ -1,0 +1,110 @@
+---
+title: "Spatial Assignment 1 | Group 4"
+author: "Alanna Wittet, Jack Halverson, Wladka Kijewska, Yuanzhao Wang"
+date: "9/8/2021"
+output: html_document
+---
+
+## Open Space and Park Lights in Cambridge, MA
+
+This set of maps compares open space and park lights in Cambridge, MA. The objective was to understand which spaces seem well-lit and safe and whether there was potential for improvement in those that are left out (if any). We've organized the maps in order from least effective to most effective.
+
+All data retrieved from the City of Cambridge Open Data portal.
+
+```{r load packages, message=FALSE, echo=FALSE}
+library(ggspatial)
+library(ggthemes)
+library(tidyverse)
+library(sf)
+```
+
+```{r, echo=FALSE, message=FALSE, results=FALSE}
+parklights <- st_read("INFRA_ParkLights.gdb")
+openspace <- st_read("RECREATION_OpenSpace.shp")
+```
+
+## Map #1
+This map seems effective with conveying the information that is the focus of this plot. The colours are corresponding to intuitive assosiations of what they depicts. The background it pale, making visual information pop out.
+
+```{r, echo=FALSE, message=FALSE, results=FALSE}
+map4 <- ggplot() +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "stamenbw")  +
+  geom_sf() +
+  labs(caption = "Map tiles by Stamen Design. Data by OpenStreetMap") +
+  geom_sf() +
+  geom_sf(data = openspace, color = "aquamarine2",
+          size = 0.2,
+          alpha = 0.25,
+          aes(fill = "openspace")) +
+  geom_sf(data = parklights,
+          size = 0.1,
+          aes(color = "brown1")) +
+scale_fill_manual(values = "chartreuse2", name = "")
+scale_color_manual(values = c("chocolate1"), name = "")
+
+map4
+```
+
+## Map #2
+This map attempts to depict parks as dangerous locations at night, while recognizing park lights as safe elements. The black base map depicts the nighttime environment, while the yellow circle park lights represent the ranges of light. Using a hollow circle rather than a solid circle could help identify the density of park lighting. However, the red symbol of open space could be misleading.
+
+```{r, echo=FALSE, message=FALSE, results=FALSE}
+ggplot() +
+  annotation_map_tile(zoomin = 0, type = "cartodark") +
+  geom_sf(data = openspace, aes(fill = "open space"), alpha = 0.8, color = NA) +
+  geom_sf(data = parklights, aes(color = "Parklights"), shape = 21, size = 5, alpha = 0.5) +
+  scale_fill_manual(values = "red", name = "") +
+  scale_color_manual(values = "yellow", name = "") +
+  labs(caption = "Map tiles and data by OpenStreetMap")
+  theme_void()
+```
+
+## Map #3
+This map seems effective with conveying the information that is the focus of this plot. The colours are corresponding to intuitive associations of what they depict. The background it pale, making visual information pop out.
+
+```{r, echo=FALSE, message=FALSE, results=FALSE}
+map4 <- ggplot() +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight")  +
+  geom_sf() +
+  labs(caption = "Map tiles and data by OpenStreetMap") +
+  geom_sf() +
+  geom_sf(data = openspace, color = "chartreuse3",
+          size = 0.2,
+          alpha = 0.25,
+          aes(fill = "openspace")) +
+  geom_sf(data = parklights,
+          size = 0.1,
+          aes(color = "darkgoldenrod2")) +
+scale_fill_manual(values = "chartreuse2", name = "") +
+scale_color_manual(values = c("darkgoldenrod2"), name = "") +
+  theme_void()
+
+map4
+```
+
+## Map 4
+The opacity of the open space reveals water underneath, which indicates areas where park lights are not expected. Additionally, this map reveals the small set of open spaces that do not have park lights, which may be unpleasant or unsafe.
+
+
+```{r, echo=FALSE, message=FALSE, results=FALSE}
+ggplot() +
+  annotation_map_tile(zoomin = 0, progress = "none", type = "cartolight") +
+  geom_sf(data = openspace,
+          color = NA,
+          alpha = 0.25,
+          aes(fill = "Open Space")) +
+    geom_sf(data = parklights,
+          size = 0.75,      
+          shape = 19,
+          alpha = 1,
+          aes(color = "Park Light")) +
+  scale_fill_manual(values = "dark green", name = " ") +
+  scale_color_manual(values = "gold", name = "") +
+  labs(caption = "Map tiles and data by OpenStreetMap") +
+  theme(panel.background = element_rect(fill = "white"),
+        legend.key = element_rect(fill = "white"))+
+  theme_map() 
+
+```
+
+## Point Distribution

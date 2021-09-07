@@ -106,3 +106,5 @@ ggplot() +
   theme_map() 
 
 ```
+
+## Point Distribution
