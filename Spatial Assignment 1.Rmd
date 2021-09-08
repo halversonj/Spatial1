@@ -79,7 +79,7 @@ ggplot() +
 
 
 ## Map #4
-This map seems effective with conveying the information that is the focus of this plot. The colours are corresponding to intuitive associations of what they depict. The background it pale, making visual information pop out.
+This map seems effective with conveying the information that is the focus of this plot. The colours are corresponding to intuitive associations of what they depict. The background is pale, making visual information pop out.
 
 ```{r, echo=FALSE, message=FALSE, results=FALSE}
 map4 <- ggplot() +
