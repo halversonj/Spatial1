@@ -127,7 +127,7 @@ ggplot() +
 
 ## Point Distribution
 All of us took part in meetings to discuss our progress and share problems with each other. We have all contributed at least one map and we have all discussed strengths and weaknesses of each. Additionally, Yuanzhao and Jack found the data that we have used, hence the points amount difference.
-  Yuanzhao - 10
-  Jack - 10
+  Yuanzhao - 11
+  Jack - 11
   Alanna - 9
   Wladka - 9
