@@ -17,11 +17,11 @@ library(ggthemes)
 library(tidyverse)
 library(sf)
 ```
-
 ```{r, echo=FALSE, message=FALSE, results=FALSE}
 parklights <- st_read("INFRA_ParkLights.gdb")
 openspace <- st_read("RECREATION_OpenSpace.shp")
 ```
+
 
 ## Map #1
 This map displays the focal information on top of a basemap themed "hotstyle." The street details of the basemap provide a good geographic context for the mapped data. While the open space and park lights are depicted with intuitive colors (green and orange), they are lost among the multiple colors of the basemap. As a result, this map is not as effective as it could be. 
@@ -39,10 +39,9 @@ ggplot() +
   labs(title = "Illuminated Open Spaces in Cambridge", caption = "Map tiles and data by OpenStreetMap")
 ```
 
+
 ## Map #2
-This map seems effective with conveying the information that is the focus of this plot. The colours are corresponding to intuitive associations of what they depict. The background is pale, making visual information pop out.
-
-
+This map is not particularly effective, as there is a clear excess of visual information and a lot of lines and points that draw attention at the same time. Some of the information displayed is not necessary to capture the main focus of this map.
 
 ```{r, echo=FALSE, message=FALSE, results=FALSE}
 map4 <- ggplot() +
@@ -63,6 +62,7 @@ scale_color_manual(values = c("chocolate1"), name = "")
 map4
 ```
 
+
 ## Map #3
 This map attempts to depict parks as dangerous locations at night, while recognizing park lights as safe elements. The black base map depicts the nighttime environment, while the yellow circle park lights represent the ranges of light. Using a hollow circle rather than a solid circle could help identify the density of park lighting. However, the red symbol of open space could be misleading.
 
@@ -76,6 +76,7 @@ ggplot() +
   labs(caption = "Map tiles and data by OpenStreetMap")
   theme_void()
 ```
+
 
 ## Map #4
 This map seems effective with conveying the information that is the focus of this plot. The colours are corresponding to intuitive associations of what they depict. The background it pale, making visual information pop out.
@@ -100,9 +101,9 @@ scale_color_manual(values = c("darkgoldenrod2"), name = "") +
 map4
 ```
 
+
 ## Map 5
 The opacity of the open space reveals water underneath, which indicates areas where park lights are not expected. Additionally, this map reveals the small set of open spaces that do not have park lights, which may be unpleasant or unsafe.
-
 
 ```{r, echo=FALSE, message=FALSE, results=FALSE}
 ggplot() +
@@ -124,6 +125,7 @@ ggplot() +
   theme_map() 
 
 ```
+
 
 ## Point Distribution
 All of us took part in meetings to discuss our progress and share problems with each other. We have all contributed at least one map and we have all discussed strengths and weaknesses of each. Additionally, Yuanzhao and Jack found the data that we have used, hence the points amount difference.
